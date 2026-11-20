@@ -1,0 +1,44 @@
+#!/bin/sh
+:<<"HTML_PAGE"
+<!DOCTYPE html>
+<html style="color-scheme:dark;font:0 monospace">
+<meta charset="utf-8">
+<title>Your Title</title>
+<style>
+dialog,pre{font:1rem}
+dialog{max-width:36rem}
+dialog::backdrop{background:Canvas}
+label {display:flex;align-items:center;gap:.5rem}
+label::after{content:"⧉"}
+label:has(:focus)::after{animation:ok 10s}
+@keyframes ok{0%,99%{content:"✓"}}
+select{flex:1}
+form{margin-top:1rem;}
+</style>
+<pre></pre>
+<dialog open>
+<h1>HTML + Shell Polyglot</h1>
+<label>
+<select>
+<option hidden>curl -fsSL %s | sh</option>
+<option>curl -fsSL %s | sh</option>
+<option>wget -qO- %s | sh</option>
+<option>brew install %p</option>
+</select>
+</label>
+<form method="dialog"><button>Review Install</button></form>
+<p>Add you text here.</p>
+</dialog>
+<script>
+const PKG = 'your-package';
+const URL = location.href;
+const SEL = document.querySelector('select');
+SEL.innerHTML = CMD.map(cmd => cmd.replaceAll('%s', url).replaceAll('%p', PKG);
+SEL.onchange = () => navigator.clipboard.writeText(s.value);
+fetch('').then(t => document.querySelector('pre').textContent = r.text());
+</script>
+HTML_PAGE
+
+echo "Shell script starts here."
+exit 0
+
